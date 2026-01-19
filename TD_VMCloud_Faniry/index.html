@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mon site</title>
+  <style>
+    :root { color-scheme: light; }
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height:1.5;
+      background:#f6f7fb;
+      color:#111;
+    }
+    header{
+      background:#111;
+      color:#fff;
+      padding:18px 14px;
+    }
+    header .wrap{
+      max-width:900px;
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    nav a{
+      color:#fff;
+      text-decoration:none;
+      margin-left:12px;
+      opacity:.9;
+    }
+    nav a:hover{ opacity:1; text-decoration:underline; }
+    main{
+      max-width:900px;
+      margin:24px auto;
+      padding:0 14px;
+    }
+    .card{
+      background:#fff;
+      border-radius:12px;
+      padding:18px;
+      box-shadow:0 6px 18px rgba(0,0,0,.06);
+      margin-bottom:16px;
+    }
+    .btn{
+      display:inline-block;
+      background:#111;
+      color:#fff;
+      padding:10px 14px;
+      border-radius:10px;
+      text-decoration:none;
+    }
+    .btn:hover{ opacity:.9; }
+    footer{
+      max-width:900px;
+      margin:28px auto;
+      padding:0 14px 24px;
+      color:#555;
+      font-size:14px;
+    }
+    input, textarea{
+      width:100%;
+      padding:10px;
+      border:1px solid #ddd;
+      border-radius:10px;
+      margin-top:6px;
+      margin-bottom:12px;
+      font-size:14px;
+    }
+    label{ font-weight:600; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <div><strong>Mon Site</strong></div>
+      <nav>
+        <a href="#accueil">Accueil</a>
+        <a href="#apropos">À propos</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="accueil" class="card">
+      <h1>Bienvenue 👋</h1>
+      <p>Site HTML basique : une page, un style simple, et une structure claire.</p>
+      <a class="btn" href="#contact">Me contacter</a>
+    </section>
+
+    <section id="apropos" class="card">
+      <h2>À propos</h2>
+      <p>
+        Tu peux remplacer ce texte par ta présentation, ton projet, ton TD Docker, etc.
+        L’idée : rester minimal et propre.
+      </p>
+      <ul>
+        <li>Rapide à modifier</li>
+        <li>1 seul fichier</li>
+        <li>Design simple</li>
+      </ul>
+    </section>
+
+    <section id="contact" class="card">
+      <h2>Contact</h2>
+      <form onsubmit="event.preventDefault(); alert('Message envoyé (démo) ✅');">
+        <label for="name">Nom</label>
+        <input id="name" name="name" placeholder="Ton nom" required />
+
+        <label for="msg">Message</label>
+        <textarea id="msg" name="msg" rows="4" placeholder="Ton message" required></textarea>
+
+        <button class="btn" type="submit">Envoyer</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    ©️ <span id="year"></span> Mon Site — fait en HTML/CSS.
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
