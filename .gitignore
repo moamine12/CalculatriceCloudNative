@@ -1,0 +1,5 @@
+# Secrets / credentials
+student.json
+*.json
+
+application/Frontend/student.json
