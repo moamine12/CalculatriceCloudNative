@@ -13,7 +13,7 @@ variable "zone" {
 variable "project_id" {
   description = "calculatrice native"
   type        = string
-  default = "a remener "  
+  default = "123e4567-e89b-12d3-a456-426614174000"  
 }
 
 variable "nombinome1" {
