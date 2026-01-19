@@ -3,3 +3,12 @@ student.json
 *.json
 
 application/Frontend/student.json
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
