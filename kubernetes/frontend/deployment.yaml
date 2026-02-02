@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: namouchi-bazzi-andriamasinoro
+  labels:
+    app: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "4m"      # Comme spécifié dans l'énoncé
+            memory: "32Mi" # Comme spécifié dans l'énoncé
+          limits:
+            cpu: "10m"
+            memory: "64Mi"
+        volumeMounts:
+        - name: frontend-files
+          mountPath: /usr/share/nginx/html
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+      volumes:
+      - name: frontend-files
+        configMap:
+          name: frontend-config
+          items:
+          - key: index.html
+            path: index.html
+          - key: style.css
+            path: style.css
+          - key: script.js
+            path: script.js

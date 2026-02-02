@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: namouchi-bazzi-andriamasinoro
+  labels:
+    project: calculatrice-cloud-native
+    environment: production

@@ -1,4 +1,4 @@
-# foundation/main.tf
+
 terraform {
   required_providers {
     scaleway = {
@@ -20,21 +20,21 @@ locals {
   formatted_name1 = lower(replace(var.nombinome1, " ", "_"))
   formatted_name2 = lower(replace(var.nombinome2, " ", "_"))
   formatted_name3 = lower(replace(var.nombinome3, " ", "_"))
-  
+
   environments = ["dev", "prod"]
-  
+
   environment_specs = {
     dev = {
-      db_name         = "db-dev"
-      lb_name         = "lb-dev"
+      db_name = "db-dev"
+      lb_name = "lb-dev"
       # Noms formatés pour les 3 personnes
-      dns_subdomain   = "calculatrice-dev-${local.formatted_name1}-${local.formatted_name2}-${local.formatted_name3}"
+      dns_subdomain = "calculatrice-dev-${local.formatted_name1}-${local.formatted_name2}-${local.formatted_name3}"
     }
     prod = {
-      db_name         = "db-prod"
-      lb_name         = "lb-prod"
+      db_name = "db-prod"
+      lb_name = "lb-prod"
       # Noms formatés pour les 3 personnes
-      dns_subdomain   = "calculatrice-${local.formatted_name1}-${local.formatted_name2}-${local.formatted_name3}"
+      dns_subdomain = "calculatrice-${local.formatted_name1}-${local.formatted_name2}-${local.formatted_name3}"
     }
   }
 }
@@ -50,10 +50,13 @@ resource "scaleway_registry_namespace" "container_registry" {
 resource "scaleway_vpc_private_network" "pn" {}
 
 resource "scaleway_k8s_cluster" "cluster" {
-  name    = "calculatrice-cluster"
-  version = "1.29.1"
-  cni     = "cilium"
-  private_network_id = scaleway_vpc_private_network.pn.id
+  name                        = "calculatrice-cluster"
+  version                     = "1.29.1"
+  cni                         = "cilium"
+  private_network_id          = scaleway_vpc_private_network.pn.id
+  delete_additional_resources = false
+
+
 }
 
 resource "scaleway_k8s_pool" "pool" {
@@ -65,13 +68,13 @@ resource "scaleway_k8s_pool" "pool" {
 
 # Bases de données (Redis)
 resource "scaleway_redis_cluster" "db" {
-  for_each      = local.environment_specs
-  name          = each.value.db_name
-  version       = "7.0"
-  node_type     = each.key == "dev" ? "RED1-MICRO" : "RED1-S"
-  cluster_size  = each.key == "dev" ? 1 : 3
-  user_name     = "admin"
-  password      = "SecurePassword123!"  # À mettre dans des variables!
+  for_each     = local.environment_specs
+  name         = each.value.db_name
+  version      = "7.0"
+  node_type    = each.key == "dev" ? "RED1-MICRO" : "RED1-S"
+  cluster_size = each.key == "dev" ? 1 : 3
+  user_name    = "admin"
+  password     = "SecurePassword123!" # À mettre dans des variables!
 }
 
 # LoadBalancers
@@ -89,7 +92,7 @@ resource "scaleway_lb" "loadbalancer" {
 # DNS
 resource "scaleway_domain_record" "dns" {
   for_each = local.environment_specs
-  
+
   dns_zone = "polytech-dijon.kiowy.net"
   name     = each.value.dns_subdomain
   type     = "A"
