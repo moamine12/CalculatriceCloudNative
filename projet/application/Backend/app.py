@@ -7,6 +7,9 @@ import os
 from flask_cors import CORS  # Pour éviter les erreurs CORS
 
 app = Flask(__name__, static_folder='../Frontend', static_url_path='')
+from werkzeug.middleware.proxy_fix import ProxyFix
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1)
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 CORS(app)  # Active CORS pour le frontend
 
 # Configuration (simple pour développement)
@@ -148,4 +151,4 @@ def health():
     return jsonify(status), 200 if all(v == 'ok' for v in status.values()) else 503
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=False)

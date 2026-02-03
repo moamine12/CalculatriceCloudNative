@@ -13,23 +13,23 @@ variable "zone" {
 variable "project_id" {
   description = "calculatrice native"
   type        = string
-  default = "123e4567-e89b-12d3-a456-426614174000"  
+  default     = "123e4567-e89b-12d3-a456-426614174000"
 }
 
 variable "nombinome1" {
   description = "variable nombinome1"
   type        = string
-  default = "Namouchi_Mohamed_Amine"
+  default     = "Namouchi_Mohamed_Amine"
 }
 
 variable "nombinome2" {
   description = "variable nombinome2"
   type        = string
-  default = "BAZZI_TAHER"
+  default     = "BAZZI_TAHER"
 }
 
 variable "nombinome3" {
   description = "variable nombinome3"
   type        = string
-  default = "Faniry ANDRIAMASINORO"  
+  default     = "Faniry ANDRIAMASINORO"
 }
