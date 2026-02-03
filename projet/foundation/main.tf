@@ -1,4 +1,3 @@
-
 terraform {
   required_providers {
     scaleway = {
@@ -6,6 +5,7 @@ terraform {
     }
   }
   required_version = ">= 0.13"
+  
 }
 
 provider "scaleway" {
@@ -54,6 +54,7 @@ resource "scaleway_k8s_cluster" "cluster" {
   version = "1.29.1"
   cni     = "cilium"
   private_network_id = scaleway_vpc_private_network.pn.id
+  delete_additional_resources = false
 }
 
 resource "scaleway_k8s_pool" "pool" {
@@ -96,3 +97,4 @@ resource "scaleway_domain_record" "dns" {
   data     = scaleway_lb_ip.lb_ip[each.key].ip_address
   ttl      = 3600
 }
+
