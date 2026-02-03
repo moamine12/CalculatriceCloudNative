@@ -1,13 +1,13 @@
-🌥️ Cloud Native Calculator – Projet Cloud & Virtualisation
+Cloud Native Calculator – Projet Cloud & Virtualisation
 Taher BAZZI • Mohamed Amine NAMOUCHI • Faniry ANDRIAMASINORO
 
-✨ Présentation
+Présentation:
 
 Bienvenue dans notre projet Cloud Native Calculator, une application distribuée pensée pour illustrer une architecture cloud moderne : microservices, messagerie, cache, et déploiement automatisé.
 
 L’objectif est simple : proposer une calculatrice capable d’effectuer les opérations essentielles (+ / − / × / ÷), tout en mettant en pratique une approche Cloud Native : déploiement reproductible, services découplés et infrastructure scalable.
 
-🧩 Vue d’ensemble de l’architecture
+Vue d’ensemble de l’architecture
 
 Notre solution repose sur plusieurs composants qui coopèrent entre eux :
 
@@ -23,31 +23,23 @@ Redis : stockage rapide des résultats (cache / persistance courte) pour amélio
 
 Infrastructure / Déploiement : provisionnée avec Terraform et orchestrée par Kubernetes.
 
-🎯 Objectifs techniques
+Objectifs techniques
 
 Ce projet nous a permis de travailler sur :
 
-🏗️ Infrastructure as Code (IaC) avec Terraform (création des ressources cloud)
+Infrastructure as Code (IaC) avec Terraform (création des ressources cloud)
 
-☸️ Orchestration Kubernetes (déploiements, services, montée en charge)
+Orchestration Kubernetes (déploiements, services, montée en charge)
 
-✉️ Communication asynchrone via RabbitMQ
+Communication asynchrone via RabbitMQ
 
-⚡ Optimisation et rapidité d’accès grâce à Redis
+Optimisation et rapidité d’accès grâce à Redis
 
-🧱 Séparation des responsabilités entre frontend, API et worker (consumer)
+Séparation des responsabilités entre frontend, API et worker (consumer)
 
-🤝 Travail d’équipe
+Travail d’équipe
 
 Nous avons construit le projet en mode collaboratif, en répartissant les tâches selon les compétences et en intégrant régulièrement :
-
-Taher BAZZI : mise en place et automatisation de l’infrastructure Terraform
-
-Mohamed Amine NAMOUCHI : 
-
-Faniry ANDRIAMASINORO :  
-
-
 
 ✅ Pré-requis
 
@@ -64,20 +56,15 @@ Pour exécuter le projet en local ou sur un cluster :
 🐍 Python (backend + consumer)
 
 
-⭐ Points forts
+ Points forts
 
 ➕➖✖️➗ Opérations principales couvertes
 
-⚙️ Traitement asynchrone (API découplée du calcul)
+Traitement asynchrone (API découplée du calcul)
 
-⚡ Résultats rapides via cache Redis
+Résultats rapides via cache Redis
 
-🧱 Architecture modulaire, prête à évoluer (scalabilité Kubernetes)
+Architecture modulaire, prête à évoluer (scalabilité Kubernetes)
 
-👥 Auteurs
 
-Taher BAZZI
 
-Mohamed Amine NAMOUCHI
-
-Faniry ANDRIAMASINORO
