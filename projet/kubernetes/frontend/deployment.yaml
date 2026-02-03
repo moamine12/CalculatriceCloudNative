@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: nginx:alpine
+        image: europe-west1-docker.pkg.dev/polytech-dijon/polytech-dijon/frontend-2026:namouchi-bazzi-andriamasinoro
         ports:
         - containerPort: 80
         resources:

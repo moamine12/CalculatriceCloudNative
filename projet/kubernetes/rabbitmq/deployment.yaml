@@ -1,0 +1,53 @@
+# kubernetes/rabbitmq/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq-deployment
+  namespace: namouchi-bazzi-andriamasinoro
+  labels:
+    app: rabbitmq
+    tier: queue
+spec:
+  replicas: 1
+  selector:
+  matchLabels:
+  app: rabbitmq
+  template:
+    metadata:
+      labels:
+      app: rabbitmq
+    spec:
+      containers:
+      - name: rabbitmq
+        image: rabbitmq:3-management-alpine
+        ports:
+        - containerPort: 5672 # AMQP
+          name: amqp
+        - containerPort: 15672 # Management UI
+          name: management
+        env:
+        - name: RABBITMQ_DEFAULT_USER
+          value: "guest"
+        - name: RABBITMQ_DEFAULT_PASS
+          value: "guest"
+          resources:
+          requests:
+            cpu: "4m" # Comme demandé dans l'énoncé
+            memory: "32Mi" # Comme demandé dans l'énoncé
+          limits:
+            cpu: "10m"
+            memory: "64Mi"
+        livenessProbe:
+          exec:
+            command:
+            - rabbitmq-diagnostics
+            - status
+          initialDelaySeconds: 60
+          periodSeconds: 30
+        readinessProbe:
+          exec:
+            command:
+            - rabbitmq-diagnostics
+            - ping
+          initialDelaySeconds: 20
+          periodSeconds: 10

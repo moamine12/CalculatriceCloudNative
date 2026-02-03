@@ -1,0 +1,42 @@
+# kubernetes/consumer/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consumer-deployment
+  namespace: namouchi-bazzi-andriamasinoro
+  labels:
+    app: consumer
+    tier: worker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: consumer
+  template:
+    metadata:
+      labels:
+        app: consumer
+    spec:
+      containers:
+      - name: consumer
+        image: europe-west1-docker.pkg.dev/polytech-dijon/polytech-dijon/consumer-2026:namouchi-bazzi-andriamasinoro  
+        env:
+        - name: REDIS_HOST
+          value: "redis-service"
+        - name: RABBITMQ_HOST
+          value: "rabbitmq-service"
+        resources:
+          requests:
+            cpu: "4m"      # Comme demandé dans l'énoncé
+            memory: "32Mi" # Comme demandé dans l'énoncé
+          limits:
+            cpu: "10m"
+            memory: "64Mi"
+        livenessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - "redis-cli -h redis-service -p 6379 ping | grep PONG"
+          initialDelaySeconds: 30
+          periodSeconds: 10

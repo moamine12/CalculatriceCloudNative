@@ -1,0 +1,53 @@
+# kubernetes/backend/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: namouchi-bazzi-andriamasinoro
+  labels:
+    app: backend
+    tier: api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: europe-west1-docker.pkg.dev/polytech-dijon/polytech-dijon/backend-2026:namouchi-bazzi-andriamasinoro  # À remplacer par ton registry
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
+        env:
+        - name: REDIS_HOST
+          value: "redis-service"  # Nom du service Redis
+        - name: RABBITMQ_HOST
+          value: "rabbitmq-service"  
+        - name: FLASK_ENV
+          value: "production"
+        resources:
+          requests:
+            cpu: "4m"      
+            memory: "32Mi" 
+          limits:
+            cpu: "10m"
+            memory: "64Mi"
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
