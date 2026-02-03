@@ -1,3 +1,13 @@
+Le plan Terraform montre les actions à effectuer (créations uniquement).
+
+Actions prévues :
+Ressources réseau : VPC, Load Balancers, IP
+Base de données : PostgreSQL pour dev et prod
+Cluster Kubernetes : Cluster + Pool de nœuds
+Registre de conteneurs : Namespace privé
+Voici un extrait complet du résultat de la commande terraform plan :
+
+
 Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
   + create
 
