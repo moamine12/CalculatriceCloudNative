@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: europe-west1-docker.pkg.dev/polytech-dijon/polytech-dijon/backend-2026:namouchi-bazzi-andriamasinoro  # À remplacer par ton registry
+        image: europe-west1-docker.pkg.dev/polytech-dijon/polytech-dijon/backend-2026:namouchi-bazzi-andriamasinoro  
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5000
