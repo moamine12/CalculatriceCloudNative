@@ -4,7 +4,7 @@ metadata:
   name: frontend-config
   namespace: namouchi-bazzi-andriamasinoro
 data:
-  # Fichier index.html (EXACTEMENT ton code)
+  # Fichier index.html 
   index.html: |
     <!DOCTYPE html>
     <html lang="fr">
@@ -41,7 +41,7 @@ data:
     </body>
     </html>
   
-  # Fichier style.css (EXACTEMENT ton code)
+  # Fichier style.css
   style.css: |
     /* Base calculator styling */
     .calculator {
