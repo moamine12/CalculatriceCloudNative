@@ -3,3 +3,6 @@ student.json
 *.json
 
 application/Frontend/student.json
+
+# Terraform
+**/.terraform/
